@@ -8,11 +8,11 @@ import {
   IconButton
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { PlusSquareIcon } from '@chakra-ui/icons'
+import { FaTshirt } from 'react-icons/fa'
 import { IoMoon } from 'react-icons/io5'
 import { LuSun } from 'react-icons/lu'
-import { FaTshirt } from 'react-icons/fa'
 import footballShirtIcon from '../assets/football-shirt.png'
+import { PlusSquareIcon } from '@chakra-ui/icons'
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -47,7 +47,8 @@ const Navbar = () => {
         <HStack spacing={4} alignItems="center">
           <Link to="/create">
             <Button
-              leftIcon={<PlusSquareIcon />}
+              leftIcon={<FaTshirt />}
+              rightIcon={<PlusSquareIcon />}
               variant="solid"
               colorScheme="teal"
               size="sm"
@@ -56,18 +57,6 @@ const Navbar = () => {
             >
               Add Shirt
             </Button>
-          </Link>
-
-          <Link to="/collection">
-            <IconButton
-              icon={<FaTshirt />}
-              colorScheme="teal"
-              variant="outline"
-              aria-label="Your Collection"
-              size="sm"
-              fontSize="20px"
-              _hover={{ color: 'green.500' }}
-            />
           </Link>
 
           <Button onClick={toggleColorMode} size="sm" variant="ghost">

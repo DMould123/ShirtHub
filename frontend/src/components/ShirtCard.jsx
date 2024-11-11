@@ -75,7 +75,8 @@ const ShirtCard = ({ shirt }) => {
 
 	return (
 		<Box shadow='lg' rounded='lg' overflow='hidden' bg={bg} transition='all 0.3s' _hover={{ transform: 'translateY(-5px)', shadow: 'xl' }} borderWidth="1px" borderColor="gray.200" p={4}>
-			<Image src={shirt.image} alt={shirt.team} h={80} w='full' objectFit='contain' borderRadius="md" />
+			<Image src={shirt.image} alt={`${shirt.team} Front`} h={80} w='full' objectFit='contain' borderRadius="md" />
+			<Image src={shirt.backImage} alt={`${shirt.team} Back`} h={80} w='full' objectFit='contain' borderRadius="md" mt={2} />
 
 			<Box mt={4}>
 				<Heading as='h3' size='md' mb={1}>{shirt.team}</Heading>
@@ -193,11 +194,20 @@ const ShirtCard = ({ shirt }) => {
 							/>
 						</FormControl>
 						<FormControl id="image" isRequired>
-							<FormLabel>Image URL</FormLabel>
+							<FormLabel>Front Image URL</FormLabel>
 							<Input
 								type="url"
 								name="image"
 								value={updatedShirtData.image}
+								onChange={handleInputChange}
+							/>
+						</FormControl>
+						<FormControl id="backImage" isRequired>
+							<FormLabel>Back Image URL</FormLabel>
+							<Input
+								type="url"
+								name="backImage"
+								value={updatedShirtData.backImage}
 								onChange={handleInputChange}
 							/>
 						</FormControl>

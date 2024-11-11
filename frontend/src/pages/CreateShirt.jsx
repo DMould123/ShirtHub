@@ -25,6 +25,7 @@ const CreateShirt = () => {
     player: '',
     playerNumber: '',
     image: '',
+    backImage: '',
     favorite: false,
     notes: ''
   })
@@ -61,6 +62,7 @@ const CreateShirt = () => {
         player: '',
         playerNumber: '',
         image: '',
+        backImage: '',
         favorite: false,
         notes: ''
       })
@@ -174,13 +176,24 @@ const CreateShirt = () => {
           </FormControl>
 
           <FormControl id="image" isRequired>
-            <FormLabel>Image URL</FormLabel>
+            <FormLabel>Front Image URL</FormLabel>
             <Input
               type="url"
               name="image"
               value={shirtData.image}
               onChange={handleChange}
-              placeholder="URL of the shirt image"
+              placeholder="URL of the front shirt image"
+            />
+          </FormControl>
+
+          <FormControl id="backImage" isRequired>
+            <FormLabel>Back Image URL</FormLabel>
+            <Input
+              type="url"
+              name="backImage"
+              value={shirtData.backImage}
+              onChange={handleChange}
+              placeholder="URL of the back shirt image"
             />
           </FormControl>
 

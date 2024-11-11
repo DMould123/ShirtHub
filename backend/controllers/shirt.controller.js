@@ -17,7 +17,7 @@ export const getShirts = async (req, res) => {
 export const createShirt = async (req, res) => {
   const shirt = req.body
 
-  if (!shirt.team || !shirt.season || !shirt.type || !shirt.image) {
+  if (!shirt.team || !shirt.season || !shirt.type || !shirt.image || !shirt.backImage) {
     return res
       .status(400)
       .json({ success: false, message: 'Please provide all required fields' })

@@ -4,20 +4,24 @@ import CreateShirt from './pages/CreateShirt'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Box minH={'100vh'}>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
       <Navbar />
-      <SignedIn>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CreateShirt />} />
-        </Routes>
-      </SignedIn>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
+      <Box flex="1">
+        <SignedIn>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<CreateShirt />} />
+          </Routes>
+        </SignedIn>
+        <SignedOut>
+          <RedirectToSignIn />
+        </SignedOut>
+      </Box>
+      <Footer />
     </Box>
   )
 }

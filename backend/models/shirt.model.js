@@ -9,8 +9,8 @@ const shirtSchema = new mongoose.Schema(
     brand: { type: String }, // Brand, e.g., "Nike", "Adidas"
     player: { type: String }, // Optional: Player name if it's a player-specific shirt
     playerNumber: { type: Number }, // Optional: Player's number if it's a player-specific shirt
-    image: { type: String, required: true }, // URL for the shirt's image
-    backImage: { type: String, required: true }, // URL for the shirt's back image
+    image: { type: String },// URL for the shirt's image
+    backImage: { type: String }, // URL for the shirt's back image
     favorite: { type: Boolean, default: false }, // Flag to mark as a favorite in the collection
     notes: { type: String } // Optional: User's notes on the shirt
   },

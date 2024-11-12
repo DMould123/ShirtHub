@@ -175,7 +175,7 @@ const CreateShirt = () => {
             />
           </FormControl>
 
-          <FormControl id="image" isRequired>
+          <FormControl id="image">
             <FormLabel>Front Image URL</FormLabel>
             <Input
               type="url"
@@ -186,7 +186,7 @@ const CreateShirt = () => {
             />
           </FormControl>
 
-          <FormControl id="backImage" isRequired>
+          <FormControl id="backImage">
             <FormLabel>Back Image URL</FormLabel>
             <Input
               type="url"

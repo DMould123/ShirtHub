@@ -82,10 +82,32 @@ const ShirtCard = ({ shirt }) => {
 			<Text fontWeight="bold" color="teal.500" textAlign="center" fontSize="lg" mb={2}>{shirt.type}</Text>
 
 			{/* Image Flip Section */}
-			<Box onClick={() => setShowFrontImage(!showFrontImage)} cursor="pointer" mb={4} textAlign="center">
-				<Image src={showFrontImage ? shirt.image : shirt.backImage} alt={showFrontImage ? `${shirt.team} Front` : `${shirt.team} Back`} h={80} w='full' objectFit='contain' borderRadius="md" />
-				<Text fontSize="sm" color="gray.500" mt={1}>{showFrontImage ? "Click to view back" : "Click to view front"}</Text>
-			</Box>
+      <Box onClick={() => (shirt.backImage && shirt.image ? setShowFrontImage(!showFrontImage) : null)} cursor="pointer" mb={4} textAlign="center">
+  <Image
+    src={showFrontImage && shirt.image ? shirt.image : shirt.backImage}
+    alt={showFrontImage && shirt.image ? `${shirt.team} Front` : `${shirt.team} Back`}
+    h={80}
+    w="full"
+    objectFit="contain"
+    borderRadius="md"
+  />
+  {shirt.image && shirt.backImage && (
+    <Text fontSize="sm" color="gray.500" mt={1}>
+      {showFrontImage ? "Click to view back" : "Click to view front"}
+    </Text>
+  )}
+  {!shirt.image && shirt.backImage && (
+    <Text fontSize="sm" color="gray.500" mt={1}>
+      Only back view available
+    </Text>
+  )}
+  {shirt.image && !shirt.backImage && (
+    <Text fontSize="sm" color="gray.500" mt={1}>
+      Only front view available
+    </Text>
+  )}
+</Box>
+
 
 			<Box mt={4}>
 				<Heading as='h3' size='md' mb={1}>{shirt.team}</Heading>
@@ -206,7 +228,7 @@ const ShirtCard = ({ shirt }) => {
 								onChange={handleInputChange}
 							/>
 						</FormControl>
-						<FormControl id="image" isRequired>
+						<FormControl id="image">
 							<FormLabel>Front Image URL</FormLabel>
 							<Input
 								type="url"
@@ -215,7 +237,7 @@ const ShirtCard = ({ shirt }) => {
 								onChange={handleInputChange}
 							/>
 						</FormControl>
-						<FormControl id="backImage" isRequired>
+						<FormControl id="backImage">
 							<FormLabel>Back Image URL</FormLabel>
 							<Input
 								type="url"

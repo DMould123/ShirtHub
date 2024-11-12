@@ -1,4 +1,3 @@
-// controllers/shirt.controller.js
 import mongoose from 'mongoose'
 import Shirt from '../models/shirt.model.js'
 
@@ -15,24 +14,33 @@ export const getShirts = async (req, res) => {
 
 // Create a new shirt
 export const createShirt = async (req, res) => {
-  const shirt = req.body
+  const shirt = req.body;
 
-  if (!shirt.team || !shirt.season || !shirt.type || !shirt.image || !shirt.backImage) {
+  // Check that essential fields are provided, but allow either image or backImage to be missing
+  if (!shirt.team || !shirt.season || !shirt.type) {
     return res
       .status(400)
-      .json({ success: false, message: 'Please provide all required fields' })
+      .json({ success: false, message: 'Please provide all required fields' });
   }
 
-  const newShirt = new Shirt(shirt)
+  // Ensure at least one image is provided
+  if (!shirt.image && !shirt.backImage) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Please provide at least one image (front or back)' });
+  }
+
+  const newShirt = new Shirt(shirt);
 
   try {
-    await newShirt.save()
-    res.status(201).json({ success: true, data: newShirt })
+    await newShirt.save();
+    res.status(201).json({ success: true, data: newShirt });
   } catch (error) {
-    console.error('Error creating shirt:', error.message)
-    res.status(500).json({ success: false, message: 'Server Error' })
+    console.error('Error creating shirt:', error.message);
+    res.status(500).json({ success: false, message: 'Server Error' });
   }
-}
+};
+
 
 // Update a shirt
 export const updateShirt = async (req, res) => {

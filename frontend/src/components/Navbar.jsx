@@ -35,7 +35,7 @@ const Navbar = () => {
           lineHeight="1.2"
         >
           <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-            Football Shirts Showcase
+            ShirtHub
             <img
               src={footballShirtIcon}
               alt="Football Shirt"

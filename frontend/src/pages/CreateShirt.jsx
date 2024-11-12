@@ -14,8 +14,10 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useShirtStore } from '../store/shirt'
+import { useUser } from '@clerk/clerk-react';
 
 const CreateShirt = () => {
+  const { user } = useUser();
   const [shirtData, setShirtData] = useState({
     team: '',
     season: '',
@@ -28,31 +30,42 @@ const CreateShirt = () => {
     backImage: '',
     favorite: false,
     notes: ''
-  })
-  const toast = useToast()
-  const createShirt = useShirtStore((state) => state.createShirt)
+  });
+  const toast = useToast();
+  const createShirt = useShirtStore((state) => state.createShirt);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, type, checked } = e.target;
     setShirtData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const result = await createShirt(shirtData)
+    e.preventDefault();
+
+    if (!user) {
+      toast({
+        title: 'Error',
+        description: 'You must be signed in to create a shirt.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true
+      });
+      return;
+    }
+
+    const result = await createShirt({ ...shirtData, userId: user.id });
 
     if (result.success) {
       toast({
         title: 'Shirt Added!',
-        description:
-          'Your new football shirt has been added to the collection.',
+        description: 'Your new football shirt has been added to the collection.',
         status: 'success',
         duration: 3000,
         isClosable: true
-      })
+      });
       setShirtData({
         team: '',
         season: '',
@@ -65,7 +78,7 @@ const CreateShirt = () => {
         backImage: '',
         favorite: false,
         notes: ''
-      })
+      });
     } else {
       toast({
         title: 'Error',
@@ -73,9 +86,9 @@ const CreateShirt = () => {
         status: 'error',
         duration: 3000,
         isClosable: true
-      })
+      });
     }
-  }
+  };
 
   return (
     <Container maxW="600px" py={6}>

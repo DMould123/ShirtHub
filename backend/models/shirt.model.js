@@ -12,7 +12,8 @@ const shirtSchema = new mongoose.Schema(
     image: { type: String },// URL for the shirt's image
     backImage: { type: String }, // URL for the shirt's back image
     favorite: { type: Boolean, default: false }, // Flag to mark as a favorite in the collection
-    notes: { type: String } // Optional: User's notes on the shirt
+    notes: { type: String }, // Optional: User's notes on the shirt
+    userId: { type: String, required: true } // Change this line to store userId as a string
   },
   {
     timestamps: true // Adds createdAt and updatedAt fields

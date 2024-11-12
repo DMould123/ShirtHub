@@ -3,13 +3,17 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useShirtStore } from '../store/shirt'
 import ShirtCard from '../components/ShirtCard'
+import { useUser } from '@clerk/clerk-react';
 
 const Home = () => {
   const { fetchShirts, shirts } = useShirtStore()
+  const { user } = useUser();
 
   useEffect(() => {
-    fetchShirts()
-  }, [fetchShirts])
+    if (user) {
+      fetchShirts(user.id);
+    }
+  }, [fetchShirts, user])
 
   console.log('shirts', shirts)
 

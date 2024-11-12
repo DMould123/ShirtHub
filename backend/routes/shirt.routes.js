@@ -8,7 +8,7 @@ import {
 
 const router = express.Router()
 
-router.get('/', getShirts) // Fetch all shirts
+router.get('/', getShirts) // Fetch all shirts for a specific user
 router.post('/', createShirt) // Add a new shirt
 router.put('/:id', updateShirt) // Update a shirt by ID
 router.delete('/:id', deleteShirt) // Delete a shirt by ID

@@ -13,6 +13,7 @@ import { IoMoon } from 'react-icons/io5'
 import { LuSun } from 'react-icons/lu'
 import footballShirtIcon from '../assets/football-shirt.png'
 import { PlusSquareIcon } from '@chakra-ui/icons'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -62,6 +63,17 @@ const Navbar = () => {
           <Button onClick={toggleColorMode} size="sm" variant="ghost">
             {colorMode === 'light' ? <IoMoon /> : <LuSun />}
           </Button>
+
+          <SignedOut>
+            <SignInButton>
+              <Button colorScheme="teal" size="sm">
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </HStack>
       </Flex>
     </Container>

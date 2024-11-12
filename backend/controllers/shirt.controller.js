@@ -3,12 +3,13 @@ import Shirt from '../models/shirt.model.js'
 
 // Get all shirts
 export const getShirts = async (req, res) => {
+  const userId = req.query.userId;
   try {
-    const shirts = await Shirt.find({})
-    res.status(200).json({ success: true, data: shirts })
+    const shirts = await Shirt.find({ userId: userId });
+    res.status(200).json({ success: true, data: shirts });
   } catch (error) {
-    console.log('Error fetching shirts:', error.message)
-    res.status(500).json({ success: false, message: 'Server Error' })
+    console.log('Error fetching shirts:', error.message);
+    res.status(500).json({ success: false, message: 'Server Error' });
   }
 }
 
@@ -16,7 +17,10 @@ export const getShirts = async (req, res) => {
 export const createShirt = async (req, res) => {
   const shirt = req.body;
 
-  // Check that essential fields are provided, but allow either image or backImage to be missing
+  // Store userId directly as a string
+  shirt.userId = req.body.userId;
+
+  // Check that essential fields are provided
   if (!shirt.team || !shirt.season || !shirt.type) {
     return res
       .status(400)

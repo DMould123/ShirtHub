@@ -40,11 +40,11 @@ export const useShirtStore = create((set) => ({
       return { success: false, message: 'Network error: ' + error.message }
     }
   },
-  fetchShirts: async () => {
-    // Fetch all shirts from the API
-    const res = await fetch('/api/shirts')
-    const data = await res.json()
-    set({ shirts: data.data })
+  fetchShirts: async (userId) => {
+    // Fetch all shirts for the specific user from the API
+    const res = await fetch(`/api/shirts?userId=${userId}`);
+    const data = await res.json();
+    set({ shirts: data.data });
   },
   deleteShirt: async (sid) => {
     // Delete a shirt by ID

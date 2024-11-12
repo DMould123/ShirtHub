@@ -26,6 +26,7 @@ import {
 	Input,
 	Select,
 	Textarea,
+	Spacer,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, ChevronDownIcon, ChevronUpIcon, StarIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
@@ -33,6 +34,7 @@ import { useShirtStore } from '../store/shirt';
 
 const ShirtCard = ({ shirt }) => {
 	const [showDetails, setShowDetails] = useState(false);
+	const [showFrontImage, setShowFrontImage] = useState(true);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const toast = useToast();
 	const { deleteShirt, updateShirt } = useShirtStore();
@@ -75,28 +77,38 @@ const ShirtCard = ({ shirt }) => {
 
 	return (
 		<Box shadow='lg' rounded='lg' overflow='hidden' bg={bg} transition='all 0.3s' _hover={{ transform: 'translateY(-5px)', shadow: 'xl' }} borderWidth="1px" borderColor="gray.200" p={4}>
-			<Image src={shirt.image} alt={`${shirt.team} Front`} h={80} w='full' objectFit='contain' borderRadius="md" />
-			<Image src={shirt.backImage} alt={`${shirt.team} Back`} h={80} w='full' objectFit='contain' borderRadius="md" mt={2} />
+
+			{/* Shirt Type Display */}
+			<Text fontWeight="bold" color="teal.500" textAlign="center" fontSize="lg" mb={2}>{shirt.type}</Text>
+
+			{/* Image Flip Section */}
+			<Box onClick={() => setShowFrontImage(!showFrontImage)} cursor="pointer" mb={4} textAlign="center">
+				<Image src={showFrontImage ? shirt.image : shirt.backImage} alt={showFrontImage ? `${shirt.team} Front` : `${shirt.team} Back`} h={80} w='full' objectFit='contain' borderRadius="md" />
+				<Text fontSize="sm" color="gray.500" mt={1}>{showFrontImage ? "Click to view back" : "Click to view front"}</Text>
+			</Box>
 
 			<Box mt={4}>
 				<Heading as='h3' size='md' mb={1}>{shirt.team}</Heading>
 				<Text fontWeight='bold' fontSize='lg' color={textColor}>Season: {shirt.season}</Text>
 
-				{/* Favorite Icon */}
-				<Tooltip label={shirt.favorite ? "Marked as Favorite" : "Not a Favorite"}>
-					<StarIcon color={shirt.favorite ? "yellow.400" : "gray.300"} mb={2} />
-				</Tooltip>
+				{/* Favorite Icon with Spacing */}
+				<HStack spacing={4} align="center">
+					<Tooltip label={shirt.favorite ? "Marked as Favorite" : "Not a Favorite"}>
+						<StarIcon color={shirt.favorite ? "yellow.400" : "gray.300"} mb={2} />
+					</Tooltip>
+					<Spacer />
+					<Button
+						variant="link"
+						colorScheme="teal"
+						mt={2}
+						rightIcon={showDetails ? <ChevronUpIcon /> : <ChevronDownIcon />}
+						onClick={() => setShowDetails(!showDetails)}
+					>
+						{showDetails ? 'Hide Details' : 'Show Details'}
+					</Button>
+				</HStack>
 
 				{/* Expandable Details Section */}
-				<Button
-					variant="link"
-					colorScheme="teal"
-					mt={2}
-					rightIcon={showDetails ? <ChevronUpIcon /> : <ChevronDownIcon />}
-					onClick={() => setShowDetails(!showDetails)}
-				>
-					{showDetails ? 'Hide Details' : 'Show Details'}
-				</Button>
 				<Collapse in={showDetails} animateOpacity>
 					<VStack align="stretch" mt={4} spacing={2}>
 						<Divider />
@@ -121,7 +133,8 @@ const ShirtCard = ({ shirt }) => {
 					<ModalHeader>Update Shirt</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						{/* Editable fields */}
+
+						{/* Form Fields */}
 						<FormControl id="team" isRequired>
 							<FormLabel>Team Name</FormLabel>
 							<Input
@@ -147,9 +160,9 @@ const ShirtCard = ({ shirt }) => {
 								value={updatedShirtData.type}
 								onChange={handleInputChange}
 							>
-								<option value="home">Home</option>
-								<option value="away">Away</option>
-								<option value="third">Third</option>
+								<option value="Home">Home</option>
+								<option value="Away">Away</option>
+								<option value="Third">Third</option>
 							</Select>
 						</FormControl>
 						<FormControl id="size">
@@ -211,27 +224,18 @@ const ShirtCard = ({ shirt }) => {
 								onChange={handleInputChange}
 							/>
 						</FormControl>
-						<FormControl id="favorite">
+						<FormControl id="favorite" display="flex" alignItems="center" mt={4}>
+							<FormLabel>Favorite</FormLabel>
 							<Checkbox
 								name="favorite"
 								isChecked={updatedShirtData.favorite}
 								onChange={handleInputChange}
-							>
-								Mark as Favorite
-							</Checkbox>
-						</FormControl>
-						<FormControl id="notes">
-							<FormLabel>Notes</FormLabel>
-							<Textarea
-								name="notes"
-								value={updatedShirtData.notes}
-								onChange={handleInputChange}
+								colorScheme="yellow"
 							/>
 						</FormControl>
 					</ModalBody>
 					<ModalFooter>
-						<Button colorScheme='blue' mr={3} onClick={handleUpdateShirt}>Update</Button>
-						<Button variant='ghost' onClick={onClose}>Cancel</Button>
+						<Button colorScheme="blue" onClick={handleUpdateShirt}>Update</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>

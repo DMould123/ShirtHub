@@ -30,7 +30,7 @@ const CreateShirt = () => {
     notes: ''
   })
   const toast = useToast()
-  const createShirt = useShirtStore((state) => state.createShirt) // Access createShirt from useShirtStore
+  const createShirt = useShirtStore((state) => state.createShirt)
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target

@@ -1,21 +1,36 @@
 import React from 'react';
 import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
+import { Box, Flex, Text, Link, Image, Stack } from '@chakra-ui/react';
+import footballShirtIcon from '../assets/football-shirt.png';
 
 const Footer = () => {
   return (
     <Box
       as="footer"
-      py={4}
+      py={6}
+      px={8}
       bg="gray.800"
       color="white"
-      position="relative"
-      bottom={0}
       width="100%"
-      textAlign="center"
     >
-      <Flex justify="center" align="center" direction="column">
-        <Flex mb={2}>
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        justify="space-between"
+        align="center"
+        maxW="6xl"
+        mx="auto"
+        textAlign={{ base: "center", md: "left" }}
+      >
+        {/* Logo and Title */}
+        <Stack direction="row" spacing={3} align="center" mb={{ base: 4, md: 0 }}>
+          <Image src={footballShirtIcon} alt="Football Shirt Icon" boxSize="50px" />
+          <Text fontSize="lg" fontWeight="bold">ShirtHub</Text>
+        </Stack>
+
+        <Text fontSize="lg">© 2024 ShirtHub. All rights reserved</Text>
+
+        {/* Social Links */}
+        <Flex justify="center" mb={{ base: 4, md: 0 }}>
           <Link
             href="https://www.linkedin.com/in/david-mould-b6731a21/"
             isExternal
@@ -41,7 +56,7 @@ const Footer = () => {
             <FaGithub size={24} />
           </Link>
         </Flex>
-        <Text fontSize="sm">David Mould 2024 ©</Text>
+
       </Flex>
     </Box>
   );

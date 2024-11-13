@@ -1,8 +1,8 @@
-import { Container, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { Container, Text, VStack } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useShirtStore } from '../store/shirt'
-import ShirtCard from '../components/ShirtCard'
+import ShirtCarousel from '../components/ShirtCarousel'
 import { useUser } from '@clerk/clerk-react';
 
 const Home = () => {
@@ -14,8 +14,6 @@ const Home = () => {
       fetchShirts(user.id);
     }
   }, [fetchShirts, user])
-
-  console.log('shirts', shirts)
 
   return (
     <Container maxW="container.xl" py={12}>
@@ -30,21 +28,9 @@ const Home = () => {
           Shirt Collection
         </Text>
 
-        <SimpleGrid
-          columns={{
-            base: 1,
-            md: 2,
-            lg: 3
-          }}
-          spacing={10}
-          w={'full'}
-        >
-          {shirts.map((shirt) => (
-            <ShirtCard key={shirt._id} shirt={shirt} />
-          ))}
-        </SimpleGrid>
-
-        {shirts.length === 0 && (
+        {shirts.length > 0 ? (
+          <ShirtCarousel shirts={shirts} />
+        ) : (
           <Text
             fontSize="xl"
             textAlign={'center'}

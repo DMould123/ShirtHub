@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
 import { Box, Flex, Text, Link, Image, Stack } from '@chakra-ui/react';
 import footballShirtIcon from '../assets/football-shirt.png';
@@ -22,10 +21,19 @@ const Footer = () => {
         textAlign={{ base: "center", md: "left" }}
       >
         {/* Logo and Title */}
-        <Stack direction="row" spacing={3} align="center" mb={{ base: 4, md: 0 }}>
-          <Image src={footballShirtIcon} alt="Football Shirt Icon" boxSize="50px" />
-          <Text fontSize="lg" fontWeight="bold">ShirtHub</Text>
-        </Stack>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }}>
+          <Image src={footballShirtIcon} alt="Football Shirt Icon"  style={{ marginLeft: '8px', width: '24px', height: '24px' }} />
+          <Text
+            fontSize={{ base: '22', sm: '28' }}
+            fontWeight="extrabold"
+            textTransform="uppercase"
+            ml={2}
+            bgGradient="linear(to-r, teal.400, green.500)"
+            bgClip="text"
+          >
+            ShirtHub
+          </Text>
+        </Link>
 
         <Text fontSize="lg">© 2024 ShirtHub. All rights reserved</Text>
 
@@ -56,7 +64,6 @@ const Footer = () => {
             <FaGithub size={24} />
           </Link>
         </Flex>
-
       </Flex>
     </Box>
   );

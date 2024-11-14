@@ -56,6 +56,8 @@ const CreateShirt = () => {
       return;
     }
 
+    console.log('Shirt Data:', { ...shirtData, userId: user.id });
+
     const result = await createShirt({ ...shirtData, userId: user.id });
 
     if (result.success) {

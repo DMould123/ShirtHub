@@ -1,4 +1,3 @@
-
 import {
 	Box,
 	Button,
@@ -26,7 +25,6 @@ import {
 	FormLabel,
 	Input,
 	Select,
-	Textarea,
 	Spacer,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, ChevronDownIcon, ChevronUpIcon, StarIcon } from '@chakra-ui/icons';

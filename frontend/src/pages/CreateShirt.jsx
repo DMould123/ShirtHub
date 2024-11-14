@@ -191,13 +191,13 @@ const CreateShirt = () => {
           </FormControl>
 
           <FormControl id="image">
-            <FormLabel>Front Image URL</FormLabel>
+            <FormLabel>Image URL</FormLabel>
             <Input
               type="url"
               name="image"
               value={shirtData.image}
               onChange={handleChange}
-              placeholder="URL of the front shirt image"
+              placeholder="URL of the front or back shirt image"
             />
           </FormControl>
 

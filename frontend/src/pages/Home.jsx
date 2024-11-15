@@ -37,35 +37,35 @@ const Home = () => {
         </Text>
 
         {shirts.length > 0 ? (
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={3}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 3000 }}
-            loop={true}
-            style={{ width: '100%', padding: '20px 0' }}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-          >
-            {shirts.map((shirt) => (
-              <SwiperSlide
-                key={shirt._id}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '100%',
-                }}
-              >
-                <ShirtCard shirt={shirt} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+       <Swiper
+       modules={[Navigation, Pagination, Autoplay]}
+       spaceBetween={30}
+       slidesPerView={3}
+       navigation
+       pagination={{ clickable: true }}
+       autoplay={{ delay: 3000 }}
+       loop={true}
+       style={{ width: '100%', padding: '20px 0', paddingBottom: '40px' }} // Add padding bottom to provide more space
+       breakpoints={{
+         640: { slidesPerView: 1 },
+         768: { slidesPerView: 2 },
+         1024: { slidesPerView: 3 },
+       }}
+     >
+       {shirts.map((shirt) => (
+         <SwiperSlide
+           key={shirt._id}
+           style={{
+             display: 'flex',
+             justifyContent: 'center',
+             alignItems: 'center',
+             height: '100%',
+           }}
+         >
+           <ShirtCard shirt={shirt} />
+         </SwiperSlide>
+       ))}
+     </Swiper>
         ) : (
           <Text
             fontSize="xl"

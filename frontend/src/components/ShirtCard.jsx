@@ -69,7 +69,7 @@ const ShirtCard = ({ shirt }) => {
       duration: 3000,
       isClosable: true,
     });
-    onDeleteClose(); // Close delete confirmation dialog
+    onDeleteClose();
   };
 
   const handleUpdateShirt = async () => {
@@ -128,6 +128,7 @@ const ShirtCard = ({ shirt }) => {
           w="full"
           objectFit="contain"
           borderRadius="md"
+          loading="lazy"
         />
         {shirt.image && shirt.backImage && (
           <Text fontSize="sm" color="gray.500" mt={1}>
@@ -202,13 +203,14 @@ const ShirtCard = ({ shirt }) => {
             icon={<EditIcon />}
             onClick={onOpen}
             colorScheme="blue"
-            mb={0} // Align edit button to bottom
+            mb={0}
           />
+
           <IconButton
             icon={<DeleteIcon />}
-            onClick={onDeleteOpen} // Open delete confirmation
+            onClick={onDeleteOpen}
             colorScheme="red"
-            mb={0} // Align delete button to bottom
+            mb={0}
           />
         </Box>
 

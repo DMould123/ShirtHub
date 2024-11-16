@@ -20,7 +20,6 @@ import {
   Collapse,
   Divider,
   Tooltip,
-  Checkbox,
   FormControl,
   FormLabel,
   Input,
@@ -32,7 +31,6 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   AlertDialogContent,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, ChevronDownIcon, ChevronUpIcon, StarIcon } from '@chakra-ui/icons';
 import { useState, useRef } from 'react';
@@ -46,10 +44,8 @@ const ShirtCard = ({ shirt }) => {
   const toast = useToast();
   const cancelRef = useRef();
   const { deleteShirt, updateShirt } = useShirtStore();
-
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
-
   const [updatedShirtData, setUpdatedShirtData] = useState(shirt);
 
   const handleInputChange = (e) => {
@@ -204,6 +200,7 @@ const ShirtCard = ({ shirt }) => {
             onClick={onOpen}
             colorScheme="blue"
             mb={0}
+            aria-label="Edit Shirt"
           />
 
           <IconButton
@@ -211,6 +208,7 @@ const ShirtCard = ({ shirt }) => {
             onClick={onDeleteOpen}
             colorScheme="red"
             mb={0}
+            aria-label="Delete Shirt"
           />
         </Box>
 

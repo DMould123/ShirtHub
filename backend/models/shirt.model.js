@@ -1,25 +1,26 @@
-import mongoose from 'mongoose'
+// backend/models/shirt.model.js
+import mongoose from 'mongoose';
 
 const shirtSchema = new mongoose.Schema(
   {
-    team: { type: String, required: true }, // Team name, e.g., "Manchester United"
-    season: { type: String, required: true }, // Season, e.g., "2023/2024"
-    type: { type: String, enum: ['home', 'away', 'third'] }, // Type of shirt: home, away, third kit, etc.
-    size: { type: String, enum: ['XS', 'S', 'M', 'L', 'XL'] }, // User's size for the shirt
-    brand: { type: String }, // Brand, e.g., "Nike", "Adidas"
-    player: { type: String }, // Optional: Player name if it's a player-specific shirt
-    playerNumber: { type: Number }, // Optional: Player's number if it's a player-specific shirt
-    image: { type: String },// URL for the shirt's image
-    backImage: { type: String }, // URL for the shirt's back image
-    favorite: { type: Boolean, default: false }, // Flag to mark as a favorite in the collection
-    notes: { type: String }, // Optional: User's notes on the shirt
-    userId: { type: String, required: true } // Change this line to store userId as a string
+    team: { type: String, required: true },
+    season: { type: String, required: true },
+    type: { type: String, enum: ['Home', 'Away', 'Third'] },
+    size: { type: String, enum: ['XS', 'S', 'M', 'L', 'XL'] },
+    brand: { type: String },
+    player: { type: String },
+    playerNumber: { type: Number },
+    image: { type: String },
+    backImage: { type: String },
+    favorite: { type: Boolean, default: false },
+    notes: { type: String },
+    userId: { type: String, required: true }
   },
   {
-    timestamps: true // Adds createdAt and updatedAt fields
+    timestamps: true
   }
-)
+);
 
-const Shirt = mongoose.model('Shirt', shirtSchema)
+const Shirt = mongoose.model('Shirt', shirtSchema);
 
-export default Shirt
+export default Shirt;

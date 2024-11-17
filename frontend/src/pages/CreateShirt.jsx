@@ -135,9 +135,9 @@ const CreateShirt = () => {
               onChange={handleChange}
               placeholder="Select shirt type"
             >
-              <option value="home">Home</option>
-              <option value="away">Away</option>
-              <option value="third">Third</option>
+              <option value="Home">Home</option>
+              <option value="Away">Away</option>
+              <option value="Third">Third</option>
             </Select>
           </FormControl>
 

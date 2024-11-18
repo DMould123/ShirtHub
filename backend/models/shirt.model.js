@@ -1,4 +1,3 @@
-// backend/models/shirt.model.js
 import mongoose from 'mongoose';
 
 const shirtSchema = new mongoose.Schema(

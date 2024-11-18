@@ -45,7 +45,7 @@ const Home = () => {
        pagination={{ clickable: true }}
        autoplay={{ delay: 3000 }}
        loop={true}
-       style={{ width: '100%', padding: '20px 0', paddingBottom: '40px' }} // Add padding bottom to provide more space
+       style={{ width: '100%', padding: '20px 0', paddingBottom: '40px' }}
        breakpoints={{
          640: { slidesPerView: 1 },
          768: { slidesPerView: 2 },

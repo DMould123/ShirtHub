@@ -1,5 +1,5 @@
 import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
-import { Box, Flex, Text, Link, Image, Stack } from '@chakra-ui/react';
+import { Box, Flex, Text, Link, Image} from '@chakra-ui/react';
 import footballShirtIcon from '../assets/football-shirt.png';
 
 const Footer = () => {

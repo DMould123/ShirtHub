@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import {
   Button,
   Container,
@@ -25,24 +26,30 @@ const Navbar = () => {
         justifyContent="space-between"
         flexDir={{ base: 'column', sm: 'row' }}
       >
-        <Text
-          fontSize={{ base: '22', sm: '28' }}
-          fontWeight="extrabold"
-          textTransform="uppercase"
-          textAlign="center"
-          bgGradient="linear(to-r, teal.400, green.500)"
-          bgClip="text"
-          lineHeight="1.2"
+        <motion.div
+          whileHover={{ y: -10 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+          style={{ display: 'flex', alignItems: 'center' }}
         >
-          <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-            ShirtHub
-            <img
-              src={footballShirtIcon}
-              alt="Football Shirt"
-              style={{ marginLeft: '8px', width: '24px', height: '24px' }}
-            />
-          </Link>
-        </Text>
+          <Text
+            fontSize={{ base: '22', sm: '28' }}
+            fontWeight="extrabold"
+            textTransform="uppercase"
+            textAlign="center"
+            bgGradient="linear(to-r, teal.400, green.500)"
+            bgClip="text"
+            lineHeight="1.2"
+          >
+            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+              ShirtHub
+              <img
+                src={footballShirtIcon}
+                alt="Football Shirt"
+                style={{ marginLeft: '8px', width: '24px', height: '24px' }}
+              />
+            </Link>
+          </Text>
+        </motion.div>
 
         <HStack spacing={4} alignItems="center">
           <Link to="/create">

@@ -1,5 +1,5 @@
-import { Container, Text, VStack } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { Container, Text, VStack, Spinner } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useShirtStore } from '../store/shirt';
 import ShirtCard from '../components/ShirtCard';
@@ -14,12 +14,36 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 const Home = () => {
   const { fetchShirts, shirts } = useShirtStore();
   const { user } = useUser();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      fetchShirts(user.id);
-    }
+    const loadShirts = async () => {
+      if (user) {
+        try {
+          await fetchShirts(user.id);
+        } catch (err) {
+          setError('Failed to fetch shirts. Please try again later.');
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false);
+      }
+    };
+
+    loadShirts();
   }, [fetchShirts, user]);
+
+  if (loading) {
+    return (
+      <Container maxW="container.xl" py={12} display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <Spinner size="xl" color="green.500" />
+      </Container>
+    );
+  }
+
+  if (error) return <Text color="red.500">{error}</Text>;
 
   console.log('shirts', shirts);
 

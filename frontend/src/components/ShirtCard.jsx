@@ -91,7 +91,7 @@ const ShirtCard = ({ shirt }) => {
       borderWidth="1px"
       borderColor="gray.200"
       p={4}
-      minHeight="400px" // Ensure enough height for symmetrical layout
+      minHeight="400px"
     >
       {/* Shirt Type Display */}
       <Text
@@ -125,6 +125,7 @@ const ShirtCard = ({ shirt }) => {
           objectFit="contain"
           borderRadius="md"
           loading="lazy"
+          fallbackSrc="path/to/placeholder-image.png"
         />
         {shirt.image && shirt.backImage && (
           <Text fontSize="sm" color="gray.500" mt={1}>
@@ -201,6 +202,7 @@ const ShirtCard = ({ shirt }) => {
             colorScheme="blue"
             mb={0}
             aria-label="Edit Shirt"
+            _hover={{ bg: "blue.100" }}
           />
 
           <IconButton
@@ -209,6 +211,7 @@ const ShirtCard = ({ shirt }) => {
             colorScheme="red"
             mb={0}
             aria-label="Delete Shirt"
+            _hover={{ bg: "red.100" }}
           />
         </Box>
 

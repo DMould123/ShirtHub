@@ -10,7 +10,8 @@ import {
   VStack,
   Heading,
   Checkbox,
-  useToast
+  useToast,
+  Text
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useShirtStore } from '../store/shirt'
@@ -31,6 +32,7 @@ const CreateShirt = () => {
     favorite: false,
     notes: ''
   });
+  const [error, setError] = useState(null);
   const toast = useToast();
   const createShirt = useShirtStore((state) => state.createShirt);
 
@@ -44,6 +46,7 @@ const CreateShirt = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
 
     if (!user) {
       toast({
@@ -231,6 +234,8 @@ const CreateShirt = () => {
               placeholder="Add any notes about this shirt"
             />
           </FormControl>
+
+          {error && <Text color="red.500">{error}</Text>}
 
           <Button type="submit" colorScheme="teal" width="full" mt={4}>
             Add Shirt

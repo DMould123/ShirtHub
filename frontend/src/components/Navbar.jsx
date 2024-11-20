@@ -66,13 +66,18 @@ const Navbar = () => {
             </Button>
           </Link>
 
-          <Button onClick={toggleColorMode} size="sm" variant="ghost">
+          <Button
+            onClick={toggleColorMode}
+            size="lg"
+            variant="ghost"
+            _hover={{ bg: 'transparent', textDecoration: 'none' }}
+          >
             {colorMode === 'light' ? <IoMoon /> : <LuSun />}
           </Button>
 
           <SignedOut>
             <SignInButton>
-              <Button colorScheme="teal" size="sm">
+              <Button colorScheme="teal" size="lg">
                 Sign In
               </Button>
             </SignInButton>

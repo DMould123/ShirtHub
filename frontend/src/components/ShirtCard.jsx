@@ -59,8 +59,10 @@ const ShirtCard = ({ shirt }) => {
   const handleDeleteShirt = async (sid) => {
     const result = await deleteShirt(sid);
     toast({
-      title: result.success ? "Deleted" : "Error",
-      description: result.message,
+      title: result.success ? "Shirt Deleted" : "Error",
+      description: result.success
+      ? `Shirt (${shirt.team}, Season: ${shirt.season}) deleted successfully.`
+      : result.message,
       status: result.success ? "success" : "error",
       duration: 3000,
       isClosable: true,
@@ -71,14 +73,17 @@ const ShirtCard = ({ shirt }) => {
   const handleUpdateShirt = async () => {
     const result = await updateShirt(shirt._id, updatedShirtData);
     toast({
-      title: result.success ? "Updated" : "Error",
-      description: result.message,
+      title: result.success ? "Shirt Updated" : "Error",
+      description: result.success
+        ? `Shirt (${updatedShirtData.team}, Season: ${updatedShirtData.season}) updated successfully.`
+        : result.message,
       status: result.success ? "success" : "error",
       duration: 3000,
       isClosable: true,
     });
     onClose();
   };
+
 
   return (
     <Box
@@ -98,7 +103,7 @@ const ShirtCard = ({ shirt }) => {
         fontWeight="bold"
         color="teal.500"
         textAlign="center"
-        fontSize="lg"
+        fontSize="x-large"
         mb={2}
       >
         {shirt.type}
@@ -128,18 +133,19 @@ const ShirtCard = ({ shirt }) => {
           fallbackSrc="path/to/placeholder-image.png"
         />
         {shirt.image && shirt.backImage && (
-          <Text fontSize="sm" color="gray.500" mt={1}>
-            {showFrontImage ? "Click to view back" : "Click to view front"}
-          </Text>
+       <Text fontSize="md" color="gray.500" mt={1}>
+       {showFrontImage ? "Switch to back view" : "Switch to front view"}
+     </Text>
+
         )}
         {!shirt.image && shirt.backImage && (
           <Text fontSize="sm" color="gray.500" mt={1}>
-            Only back view available
+           Back shirt image only
           </Text>
         )}
         {shirt.image && !shirt.backImage && (
           <Text fontSize="sm" color="gray.500" mt={1}>
-            Only front view available
+            Front shirt image only
           </Text>
         )}
       </Box>
@@ -174,16 +180,16 @@ const ShirtCard = ({ shirt }) => {
         <Collapse in={showDetails} animateOpacity>
           <VStack align="stretch" mt={4} spacing={2}>
             <Divider />
-            <Text color={textColor}>
-              <strong>Brand:</strong> {shirt.brand}
-            </Text>
-            <Text color={textColor}>
+            <Text color={textColor} fontSize="lg" textAlign="left">
+  <strong>Brand:</strong> {shirt.brand}
+</Text>
+<Text color={textColor} fontSize="lg" textAlign="left">
               <strong>Player:</strong> {shirt.player || "N/A"}
             </Text>
-            <Text color={textColor}>
+            <Text color={textColor} fontSize="lg" textAlign="left">
               <strong>Player Number:</strong> {shirt.playerNumber || "N/A"}
             </Text>
-            <Text color={textColor}>
+            <Text color={textColor} fontSize="lg" textAlign="left">
               <strong>Notes:</strong> {shirt.notes || "None"}
             </Text>
           </VStack>

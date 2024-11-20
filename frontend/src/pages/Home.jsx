@@ -97,7 +97,7 @@ const Home = () => {
             fontWeight="bold"
             color="gray.500"
           >
-            No shirts found 😢{' '}
+            No shirts found
             <Link to={'/create'}>
               <Text as="span" color="green.500" _hover={{ textDecoration: 'underline' }}>
                 Add a New Shirt

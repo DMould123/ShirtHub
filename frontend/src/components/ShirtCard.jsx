@@ -133,19 +133,18 @@ const ShirtCard = ({ shirt }) => {
           fallbackSrc="path/to/placeholder-image.png"
         />
         {shirt.image && shirt.backImage && (
-       <Text fontSize="md" color="gray.500" mt={1}>
-       {showFrontImage ? "Switch to back view" : "Switch to front view"}
-     </Text>
-
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.500" mt={1}>
+            {showFrontImage ? "View Back Image" : "View Front Image"}
+          </Text>
         )}
         {!shirt.image && shirt.backImage && (
-          <Text fontSize="sm" color="gray.500" mt={1}>
-           Back shirt image only
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.500" mt={1}>
+           Back Image only
           </Text>
         )}
         {shirt.image && !shirt.backImage && (
-          <Text fontSize="sm" color="gray.500" mt={1}>
-            Front shirt image only
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.500" mt={1}>
+            Front Image only
           </Text>
         )}
       </Box>

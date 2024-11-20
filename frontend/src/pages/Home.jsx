@@ -88,17 +88,24 @@ const Home = () => {
         {shirts.length > 0 ? (
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={3}
+            spaceBetween={15}
+            slidesPerView={1} // Default to 1 slide for mobile
             navigation
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000 }}
             loop={true}
             style={{ width: '100%', padding: '20px 0', paddingBottom: '40px' }}
             breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 }
+              700: {
+                // For screens 700px and wider
+                slidesPerView: 1,
+                spaceBetween: 20
+              },
+              1024: {
+                // For screens 1024px and wider
+                slidesPerView: 3,
+                spaceBetween: 30
+              }
             }}
           >
             {shirts.map((shirt) => (

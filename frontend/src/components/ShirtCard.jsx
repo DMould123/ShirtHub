@@ -105,7 +105,7 @@ const ShirtCard = ({ shirt }) => {
       borderWidth="1px"
       borderColor="gray.200"
       p={4}
-      minHeight="400px"
+      minHeight="350px"
     >
       {/* Shirt Type Display */}
       <Text

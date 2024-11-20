@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 import {
   Button,
   Container,
   Flex,
   HStack,
   Text,
-  useColorMode,
+  useColorMode
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { FaTshirt } from 'react-icons/fa'
@@ -13,7 +13,12 @@ import { IoMoon } from 'react-icons/io5'
 import { LuSun } from 'react-icons/lu'
 import footballShirtIcon from '../assets/football-shirt.png'
 import { PlusSquareIcon } from '@chakra-ui/icons'
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from '@clerk/clerk-react'
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()

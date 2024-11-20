@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import CreateShirt from './pages/CreateShirt'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
-import Footer from './components/Footer';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
+import Footer from './components/Footer'
 
 function App() {
   return (

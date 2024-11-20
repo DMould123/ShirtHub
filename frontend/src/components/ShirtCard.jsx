@@ -30,60 +30,69 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
-  AlertDialogContent,
-} from '@chakra-ui/react';
-import { DeleteIcon, EditIcon, ChevronDownIcon, ChevronUpIcon, StarIcon } from '@chakra-ui/icons';
-import { useState, useRef } from 'react';
-import { useShirtStore } from '../store/shirt';
+  AlertDialogContent
+} from '@chakra-ui/react'
+import {
+  DeleteIcon,
+  EditIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  StarIcon
+} from '@chakra-ui/icons'
+import { useState, useRef } from 'react'
+import { useShirtStore } from '../store/shirt'
 
 const ShirtCard = ({ shirt }) => {
-  const [showDetails, setShowDetails] = useState(false);
-  const [showFrontImage, setShowFrontImage] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure();
-  const toast = useToast();
-  const cancelRef = useRef();
-  const { deleteShirt, updateShirt } = useShirtStore();
-  const textColor = useColorModeValue("gray.600", "gray.200");
-  const bg = useColorModeValue("white", "gray.800");
-  const [updatedShirtData, setUpdatedShirtData] = useState(shirt);
+  const [showDetails, setShowDetails] = useState(false)
+  const [showFrontImage, setShowFrontImage] = useState(true)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose
+  } = useDisclosure()
+  const toast = useToast()
+  const cancelRef = useRef()
+  const { deleteShirt, updateShirt } = useShirtStore()
+  const textColor = useColorModeValue('gray.600', 'gray.200')
+  const bg = useColorModeValue('white', 'gray.800')
+  const [updatedShirtData, setUpdatedShirtData] = useState(shirt)
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setUpdatedShirtData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
 
   const handleDeleteShirt = async (sid) => {
-    const result = await deleteShirt(sid);
+    const result = await deleteShirt(sid)
     toast({
-      title: result.success ? "Shirt Deleted" : "Error",
+      title: result.success ? 'Shirt Deleted' : 'Error',
       description: result.success
-      ? `Shirt (${shirt.team}, Season: ${shirt.season}) deleted successfully.`
-      : result.message,
-      status: result.success ? "success" : "error",
+        ? `Shirt (${shirt.team}, Season: ${shirt.season}) deleted successfully.`
+        : result.message,
+      status: result.success ? 'success' : 'error',
       duration: 3000,
-      isClosable: true,
-    });
-    onDeleteClose();
-  };
+      isClosable: true
+    })
+    onDeleteClose()
+  }
 
   const handleUpdateShirt = async () => {
-    const result = await updateShirt(shirt._id, updatedShirtData);
+    const result = await updateShirt(shirt._id, updatedShirtData)
     toast({
-      title: result.success ? "Shirt Updated" : "Error",
+      title: result.success ? 'Shirt Updated' : 'Error',
       description: result.success
         ? `Shirt (${updatedShirtData.team}, Season: ${updatedShirtData.season}) updated successfully.`
         : result.message,
-      status: result.success ? "success" : "error",
+      status: result.success ? 'success' : 'error',
       duration: 3000,
-      isClosable: true,
-    });
-    onClose();
-  };
-
+      isClosable: true
+    })
+    onClose()
+  }
 
   return (
     <Box
@@ -92,7 +101,7 @@ const ShirtCard = ({ shirt }) => {
       overflow="hidden"
       bg={bg}
       transition="all 0.3s"
-      _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+      _hover={{ transform: 'translateY(-5px)', shadow: 'xl' }}
       borderWidth="1px"
       borderColor="gray.200"
       p={4}
@@ -112,7 +121,9 @@ const ShirtCard = ({ shirt }) => {
       {/* Image Flip Section */}
       <Box
         onClick={() =>
-          shirt.backImage && shirt.image ? setShowFrontImage(!showFrontImage) : null
+          shirt.backImage && shirt.image
+            ? setShowFrontImage(!showFrontImage)
+            : null
         }
         cursor="pointer"
         mb={4}
@@ -134,12 +145,12 @@ const ShirtCard = ({ shirt }) => {
         />
         {shirt.image && shirt.backImage && (
           <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.500" mt={1}>
-            {showFrontImage ? "View Back Image" : "View Front Image"}
+            {showFrontImage ? 'View Back Image' : 'View Front Image'}
           </Text>
         )}
         {!shirt.image && shirt.backImage && (
           <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.500" mt={1}>
-           Back Image only
+            Back Image only
           </Text>
         )}
         {shirt.image && !shirt.backImage && (
@@ -160,8 +171,13 @@ const ShirtCard = ({ shirt }) => {
 
         {/* Favorite Icon with Spacing */}
         <HStack spacing={4} align="center">
-          <Tooltip label={shirt.favorite ? "Marked as Favorite" : "Not a Favorite"}>
-            <StarIcon color={shirt.favorite ? "yellow.400" : "gray.300"} mb={2} />
+          <Tooltip
+            label={shirt.favorite ? 'Marked as Favorite' : 'Not a Favorite'}
+          >
+            <StarIcon
+              color={shirt.favorite ? 'yellow.400' : 'gray.300'}
+              mb={2}
+            />
           </Tooltip>
           <Spacer />
           <Button
@@ -171,7 +187,7 @@ const ShirtCard = ({ shirt }) => {
             rightIcon={showDetails ? <ChevronUpIcon /> : <ChevronDownIcon />}
             onClick={() => setShowDetails(!showDetails)}
           >
-            {showDetails ? "Hide Details" : "Show Details"}
+            {showDetails ? 'Hide Details' : 'Show Details'}
           </Button>
         </HStack>
 
@@ -180,16 +196,16 @@ const ShirtCard = ({ shirt }) => {
           <VStack align="stretch" mt={4} spacing={2}>
             <Divider />
             <Text color={textColor} fontSize="lg" textAlign="left">
-  <strong>Brand:</strong> {shirt.brand}
-</Text>
-<Text color={textColor} fontSize="lg" textAlign="left">
-              <strong>Player:</strong> {shirt.player || "N/A"}
+              <strong>Brand:</strong> {shirt.brand}
             </Text>
             <Text color={textColor} fontSize="lg" textAlign="left">
-              <strong>Player Number:</strong> {shirt.playerNumber || "N/A"}
+              <strong>Player:</strong> {shirt.player || 'N/A'}
             </Text>
             <Text color={textColor} fontSize="lg" textAlign="left">
-              <strong>Notes:</strong> {shirt.notes || "None"}
+              <strong>Player Number:</strong> {shirt.playerNumber || 'N/A'}
+            </Text>
+            <Text color={textColor} fontSize="lg" textAlign="left">
+              <strong>Notes:</strong> {shirt.notes || 'None'}
             </Text>
           </VStack>
         </Collapse>
@@ -207,7 +223,7 @@ const ShirtCard = ({ shirt }) => {
             colorScheme="blue"
             mb={0}
             aria-label="Edit Shirt"
-            _hover={{ bg: "blue.100" }}
+            _hover={{ bg: 'blue.100' }}
           />
 
           <IconButton
@@ -216,7 +232,7 @@ const ShirtCard = ({ shirt }) => {
             colorScheme="red"
             mb={0}
             aria-label="Delete Shirt"
-            _hover={{ bg: "red.100" }}
+            _hover={{ bg: 'red.100' }}
           />
         </Box>
 
@@ -351,7 +367,7 @@ const ShirtCard = ({ shirt }) => {
         </AlertDialog>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default ShirtCard;
+export default ShirtCard

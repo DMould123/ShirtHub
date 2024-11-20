@@ -1,34 +1,39 @@
-import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
-import { Box, Flex, Text, Link, Image} from '@chakra-ui/react';
-import footballShirtIcon from '../assets/football-shirt.png';
-import { motion } from 'framer-motion';
+import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa'
+import { Box, Flex, Text, Link, Image } from '@chakra-ui/react'
+import footballShirtIcon from '../assets/football-shirt.png'
+import { motion } from 'framer-motion'
 
 const Footer = () => {
   return (
-    <Box
-      as="footer"
-      py={6}
-      px={8}
-      bg="gray.800"
-      color="white"
-      width="100%"
-    >
+    <Box as="footer" py={6} px={8} bg="gray.800" color="white" width="100%">
       <Flex
-        direction={{ base: "column", md: "row" }}
+        direction={{ base: 'column', md: 'row' }}
         justify="space-between"
         align="center"
         maxW="6xl"
         mx="auto"
-        textAlign={{ base: "center", md: "left" }}
+        textAlign={{ base: 'center', md: 'left' }}
       >
         {/* Logo and Title */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }}>
+        <Link
+          to="/"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            color: 'white',
+            textDecoration: 'none'
+          }}
+        >
           <motion.div
             whileHover={{ y: -10 }}
             transition={{ type: 'spring', stiffness: 300 }}
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            <Image src={footballShirtIcon} alt="Football Shirt Icon"  style={{ marginLeft: '8px', width: '24px', height: '24px' }} />
+            <Image
+              src={footballShirtIcon}
+              alt="Football Shirt Icon"
+              style={{ marginLeft: '8px', width: '24px', height: '24px' }}
+            />
             <Text
               fontSize={{ base: '22', sm: '28' }}
               fontWeight="extrabold"
@@ -72,7 +77,7 @@ const Footer = () => {
         </Flex>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

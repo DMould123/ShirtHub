@@ -25,11 +25,14 @@ export const useShirtStore = create((set) => ({
 
       if (!res.ok) {
         // Handle HTTP errors
-        const errorData = await res.json();
-        return { success: false, message: errorData.message || 'Failed to create shirt.' };
+        const errorData = await res.json()
+        return {
+          success: false,
+          message: errorData.message || 'Failed to create shirt.'
+        }
       }
 
-      const data = await res.json();
+      const data = await res.json()
       if (!data.success) return { success: false, message: data.message }
 
       // Update shirts array with the newly created shirt
@@ -42,9 +45,9 @@ export const useShirtStore = create((set) => ({
   },
   fetchShirts: async (userId) => {
     // Fetch all shirts for the specific user from the API
-    const res = await fetch(`/api/shirts?userId=${userId}`);
-    const data = await res.json();
-    set({ shirts: data.data });
+    const res = await fetch(`/api/shirts?userId=${userId}`)
+    const data = await res.json()
+    set({ shirts: data.data })
   },
   deleteShirt: async (sid) => {
     // Delete a shirt by ID

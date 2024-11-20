@@ -3,48 +3,50 @@ import Shirt from '../models/shirt.model.js'
 
 // Get all shirts
 export const getShirts = async (req, res) => {
-  const userId = req.query.userId;
+  const userId = req.query.userId
   try {
-    const shirts = await Shirt.find({ userId: userId });
-    res.status(200).json({ success: true, data: shirts });
+    const shirts = await Shirt.find({ userId: userId })
+    res.status(200).json({ success: true, data: shirts })
   } catch (error) {
-    console.log('Error fetching shirts:', error.message);
-    res.status(500).json({ success: false, message: 'Server Error' });
+    console.log('Error fetching shirts:', error.message)
+    res.status(500).json({ success: false, message: 'Server Error' })
   }
 }
 
 // Create a new shirt
 export const createShirt = async (req, res) => {
-  const shirt = req.body;
+  const shirt = req.body
 
   // Store userId directly as a string
-  shirt.userId = req.body.userId;
+  shirt.userId = req.body.userId
 
   // Check that essential fields are provided
   if (!shirt.team || !shirt.season || !shirt.type) {
     return res
       .status(400)
-      .json({ success: false, message: 'Please provide all required fields' });
+      .json({ success: false, message: 'Please provide all required fields' })
   }
 
   // Ensure at least one image is provided
   if (!shirt.image && !shirt.backImage) {
     return res
       .status(400)
-      .json({ success: false, message: 'Please provide at least one image (front or back)' });
+      .json({
+        success: false,
+        message: 'Please provide at least one image (front or back)'
+      })
   }
 
-  const newShirt = new Shirt(shirt);
+  const newShirt = new Shirt(shirt)
 
   try {
-    await newShirt.save();
-    res.status(201).json({ success: true, data: newShirt });
+    await newShirt.save()
+    res.status(201).json({ success: true, data: newShirt })
   } catch (error) {
-    console.error('Error creating shirt:', error.message);
-    res.status(500).json({ success: false, message: 'Server Error' });
+    console.error('Error creating shirt:', error.message)
+    res.status(500).json({ success: false, message: 'Server Error' })
   }
-};
-
+}
 
 // Update a shirt
 export const updateShirt = async (req, res) => {

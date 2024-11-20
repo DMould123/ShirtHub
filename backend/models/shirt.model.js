@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const shirtSchema = new mongoose.Schema(
   {
@@ -18,8 +18,8 @@ const shirtSchema = new mongoose.Schema(
   {
     timestamps: true
   }
-);
+)
 
-const Shirt = mongoose.model('Shirt', shirtSchema);
+const Shirt = mongoose.model('Shirt', shirtSchema)
 
-export default Shirt;
+export default Shirt

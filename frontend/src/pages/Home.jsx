@@ -50,7 +50,27 @@ const Home = () => {
     )
   }
 
-  if (error) return <Text color="red.500">{error}</Text>
+  if (error) {
+    return (
+      <Container
+        maxW="container.xl"
+        py={12}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <Text
+          fontSize="2xl"
+          fontWeight="bold"
+          color="red.500"
+          textAlign="center"
+        >
+          {error}
+        </Text>
+      </Container>
+    )
+  }
 
   return (
     <Container maxW="container.xl" py={12}>
@@ -62,7 +82,7 @@ const Home = () => {
           bgClip={'text'}
           textAlign={'center'}
         >
-          Shirt Collection
+          Shirt Collection 👕
         </Text>
 
         {shirts.length > 0 ? (

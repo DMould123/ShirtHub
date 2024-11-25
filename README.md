@@ -2,7 +2,7 @@
 
 ## Description 🌍
 
-ShirtHub is a web application designed to showcase and manage a collection of football shirts. Users can view, add, and manage their favorite shirts, making it a perfect platform for football enthusiasts. 
+ShirtHub is a web application designed to showcase and manage a collection of football shirts. Users can view, add, and manage their favorite shirts, making it a perfect platform for football enthusiasts.
 The app features a user-friendly interface, allowing seamless navigation and interaction.
 
 ## Objectives 🎯
@@ -23,6 +23,8 @@ The objectives of the ShirtHub project include:
 - MongoDB
 - Chakra UI
 - Swiper.js
+- React Icons
+- Zustand
 
 ## Installation 🔧
 

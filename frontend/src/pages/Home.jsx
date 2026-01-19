@@ -43,7 +43,7 @@ const Home = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        height="100vh"
+        minHeight="60vh"
       >
         <Spinner size="xl" color="green.500" />
       </Container>
@@ -58,7 +58,7 @@ const Home = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        height="100vh"
+        minHeight="60vh"
       >
         <Text
           fontSize="2xl"
@@ -115,7 +115,7 @@ const Home = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  height: '100%'
+                  minHeight: '440px'
                 }}
               >
                 <ShirtCard shirt={shirt} />

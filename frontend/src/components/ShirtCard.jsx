@@ -105,7 +105,9 @@ const ShirtCard = ({ shirt }) => {
       borderWidth="1px"
       borderColor="gray.200"
       p={4}
-      minHeight="350px"
+      height="420px"
+      display="flex"
+      flexDirection="column"
     >
       {/* Shirt Type Display */}
       <Text
@@ -128,6 +130,7 @@ const ShirtCard = ({ shirt }) => {
         cursor="pointer"
         mb={4}
         textAlign="center"
+        flex="0 0 auto"
       >
         <Image
           src={showFrontImage && shirt.image ? shirt.image : shirt.backImage}
@@ -161,7 +164,7 @@ const ShirtCard = ({ shirt }) => {
       </Box>
 
       {/* Card Content */}
-      <Box mt={4}>
+      <Box mt={4} flex="1" overflowY="auto">
         <Heading as="h3" size="md" mb={1}>
           {shirt.team}
         </Heading>
@@ -193,7 +196,14 @@ const ShirtCard = ({ shirt }) => {
 
         {/* Expandable Details Section */}
         <Collapse in={showDetails} animateOpacity>
-          <VStack align="stretch" mt={4} spacing={2}>
+          <VStack
+            align="stretch"
+            mt={4}
+            spacing={2}
+            maxH="140px"
+            overflowY="auto"
+            pr={2}
+          >
             <Divider />
             <Text color={textColor} fontSize="lg" textAlign="left">
               <strong>Brand:</strong> {shirt.brand}
